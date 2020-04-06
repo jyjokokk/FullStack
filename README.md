@@ -1,2 +1,4 @@
 # FullStack
-For returning HYU Fullstack Open mooc assignments
+
+For returning Fullstack Open mooc exercise answers.
+
