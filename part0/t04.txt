@@ -1,0 +1,48 @@
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
+palvelin-->selain: HTML
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+palvelin-->selain: main.css
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.js
+palvelin-->selain: main.js
+
+note over selain:
+Selain alkaa suorittamaan noudettua javascriptia, ja lahettaa
+sielta loytyvan GET pyynnon palvelimelle json-datasta
+end note
+
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+palvelin-->selain: [{ content: "data json muodossa", date: "2020-04-16" }, ...]
+
+note over selain:
+Tapahtumakasittelija aktivoituu, JavaScript
+renderoi muistiinpanot DOMiin.
+end note
+
+note over selain:
+Kayttaja tayttaa formin ja klikkaa submit, ja selain 
+html:n ohjeistuksella tekee POST requestin, bodyna
+kayttajan syottama muistiinpanon teksti
+end note
+
+selain->palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note
+
+note over palvelin
+Palvelin ottaa requestin vastaan, tekee uuden muistiinpanon pyynnosta
+ja ajasta, lisaa sen joukkoon. Vastaa 302, ja osoittaa /notes.
+end note
+
+palvelin->selain: "302 not found, Location: /notes"
+
+note over selain
+Selain tekee uuden GET requestin osoitteeseen /notes,
+palvelin palauttaa html uudelleen
+end note
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
+palvelin-->selain: HTML
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+palvelin-->selain: main.css
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.js
+palvelin-->selain: main.js
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+palvelin-->selain: [{ content: "paivitetty json", date: "2020-04-16" }, ...]
+
