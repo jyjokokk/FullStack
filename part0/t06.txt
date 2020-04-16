@@ -1,0 +1,34 @@
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
+palvelin-->selain: HTML
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+palvelin-->selain: main.css
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.js
+palvelin-->selain: main.js
+
+note over selain:
+Selain alkaa suorittamaan noudettua javascriptia, ja lahettaa
+sielta loytyvan GET pyynnon palvelimelle json-datasta
+end note
+
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+palvelin-->selain: [{ content: "data json muodossa", date: "2020-04-16" }, ...]
+
+note over selain:
+JavaScript renderoi muistiinpanot
+end note
+
+note over selain:
+Kayttaja tayttaa formin ja klikkaa submit, javascript
+tekee uuden muistiinpano-olion, lisaa sen listaan,
+renderoi muistiinpanot uudelleen, ja lahettaa 
+valmiin muistiinpanon JSONina palvelimelle
+end note
+
+selain->palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+
+note over palvelin:
+Selain ottaa requestin vastaan, lisaa muistiinpanon muistiin,
+ja kuittaa pyynnon saapuneen
+end note
+
+palvelin->selain: {"message":"note created"}
