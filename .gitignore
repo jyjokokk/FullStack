@@ -20,3 +20,8 @@ sketch
 
 # End of https://www.gitignore.io/api/react
 
+# Personal
+.vscode/
+*/.vscode/
+**/.vscode/
+
