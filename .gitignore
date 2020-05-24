@@ -21,7 +21,11 @@ sketch
 # End of https://www.gitignore.io/api/react
 
 # Personal
+
+# VSCode
 .vscode/
 */.vscode/
 **/.vscode/
 
+# YouCompleteMe
+**/jsconfig.json
