@@ -6,7 +6,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-
 /**
  * Header component
  * @component
@@ -14,12 +13,11 @@ import ReactDOM from 'react-dom'
  */
 const Header = (props) => {
   return (
-    <>
+    <div>
       <h1>{props.course}</h1>
-    </>
+    </div>
   )
 }
-
 
 /**
  * Component for the main body of page
@@ -27,14 +25,13 @@ const Header = (props) => {
  */
 const Content = (props) => {
   return (
-    <>
+    <div>
       <Part part={props.part1} exercises={props.exercises1} />
       <Part part={props.part2} exercises={props.exercises2} />
       <Part part={props.part3} exercises={props.exercises3} />
-    </>
+    </div>
   )
 }
-
 
 /**
  * Component for part + exercises
@@ -42,12 +39,11 @@ const Content = (props) => {
  */
 const Part = (props) => {
   return (
-    <>
+    <div>
       <p>{props.part} {props.exercises}</p>
-    </>
+    </div>
   )
 }
-
 
 /**
  * Component for the total sum of exercises
@@ -55,12 +51,11 @@ const Part = (props) => {
  */
 const Total = (props) => {
   return (
-    <>
+    <div>
       <p>Number of exercises {props.exercises1 + props.exercises2 + props.exercises3}</p>
-    </>
+    </div>
   )
 }
-
 
 /**
  * Main component to run
@@ -77,7 +72,7 @@ const App = () => {
   return (
     <div>
       <Header course={course} />
-      <Content 
+      <Content
         part1={part1}
         part2={part2}
         part3={part3}
@@ -93,6 +88,5 @@ const App = () => {
     </div>
   )
 }
-
 
 ReactDOM.render(<App />, document.getElementById('root'))
