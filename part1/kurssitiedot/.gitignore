@@ -20,3 +20,10 @@ sketch
 
 # End of https://www.gitignore.io/api/react
 
+
+# create by https://github.com/iamcco/coc-gitignore (Fri Jun 12 2020 01:41:59 GMT+0300 (Eastern European Summer Time))
+# ReactNative.gitignore:
+# React Native Stack Base
+
+.expo
+__generated__
