@@ -14,13 +14,6 @@ const Button = ({onClick, text}) => (
 )
 
 const Average = ({ all }) => {
-  if (all.length === 0) {
-    return (
-      <div>
-        Average will be calculated once there is given feedback.
-      </div>
-    )
-  }
   let sum = 0;
   all.forEach(i => sum += i)
   let avg = sum / all.length
@@ -32,19 +25,29 @@ const Average = ({ all }) => {
 }
 
 const Percentage = ({ good, all }) => {
-  if (all.length === 0) {
-    return (
-      <div>
-      </div>
-    )
-  }
   let percent = good / all.length * 100
   return (
     <div>
       Positive {percent} %
     </div>
   )
+}
 
+const Statistics = (props) => {
+  if (props.all.length === 0)
+    return (
+      <div>No feedback given</div>
+    )
+  return (
+    <div>
+      <div>Good {props.good}</div>
+      <div>Neutral {props.neutral}</div>
+      <div>Bad {props.bad}</div>
+      <div>All {props.all.length}</div>
+      <Average all={props.all} />
+      <Percentage good={props.good} all={props.all} />
+    </div>
+  )
 }
 
 const App = (props) => {
@@ -76,12 +79,7 @@ const App = (props) => {
       </div>
       <h2>Statistics</h2>
       <div>
-        <div>Good {good}</div>
-        <div>Neutral {neutral}</div>
-        <div>Bad {bad}</div>
-        <div>All {all.length}</div>
-        <Average all={all} />
-        <Percentage good={good} all={all} />
+        <Statistics all={all} good={good} neutral={neutral} bad={bad} />
       </div>
     </div>
   )
