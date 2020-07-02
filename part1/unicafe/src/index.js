@@ -3,6 +3,7 @@
  * (Exercises 1.6 - 1.14 of Fullstack Open mooc)
  * @author Jyrki Kokkola
  * @version 0.0.4
+ * @todo Documenting the code is not done.
  */
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
@@ -40,8 +41,10 @@ const Button = ({onClick, text}) => (
 )
 
 const StatisticLine = ({text, value}) => (
-  // if (text == Percentage) { ... }
-  <div>{text} {value}</div>
+  <tr>
+    <td>{text}</td>
+    <td>{value}</td>
+  </tr>
 )
 
 const Statistics = ({ good, neutral, bad, all}) => {
@@ -51,12 +54,16 @@ const Statistics = ({ good, neutral, bad, all}) => {
     )
   return (
     <div>
-      <StatisticLine text='Good' value={good} />
-      <StatisticLine text='Neutral' value={neutral} />
-      <StatisticLine text='Bad' value={bad} />
-      <StatisticLine text='All' value={all.length} />
-      <StatisticLine text='Average' value={calcAverage(all)} />
-      <StatisticLine text='Percentage' value={calcPercentage(good, all.length)} /> 
+      <table>
+        <tbody>
+          <StatisticLine text='Good' value={good} />
+          <StatisticLine text='Neutral' value={neutral} />
+          <StatisticLine text='Bad' value={bad} />
+          <StatisticLine text='All' value={all.length} />
+          <StatisticLine text='Average' value={calcAverage(all)} />
+          <StatisticLine text='Percentage' value={calcPercentage(good, all.length)} /> 
+        </tbody>
+      </table>
     </div>
   )
 }
