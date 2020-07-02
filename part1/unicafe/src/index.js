@@ -2,10 +2,36 @@
  * Web application for giving feedback to Unicafe.
  * (Exercises 1.6 - 1.14 of Fullstack Open mooc)
  * @author Jyrki Kokkola
- * @version 0.0.1
+ * @version 0.0.4
  */
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
+
+/**
+ * Calculate the average of a list of numerical values.
+ * @param {number[]} values list of values
+ * @returns {number} Average of values to one decimal point.
+ */
+const calcAverage = (values) => {
+  if (values.length === 0) {
+    return 0
+  }
+  let sum = 0
+  values.forEach(i => sum += i)
+  let avg = sum / values.length
+  return avg.toFixed(1)
+}
+
+/**
+ * Calculate the percentage of a value when compared to another value.
+ * @param {number} value Numberical value to check
+ * @param {number} total Numerical value to check against
+ * @returns {string} String representation of the percentage, rounded to one decimal point.
+ */
+const calcPercentage = (value, total) => {
+  let percentage = (value / total * 100)
+  return percentage.toFixed(1) + ' %'
+}
 
 const Button = ({onClick, text}) => (
   <button onClick={onClick}>
@@ -13,39 +39,24 @@ const Button = ({onClick, text}) => (
   </button>
 )
 
-const Average = ({ all }) => {
-  let sum = 0;
-  all.forEach(i => sum += i)
-  let avg = sum / all.length
-  return (
-    <div>
-      Average {avg}
-    </div>
-  )
-}
+const StatisticLine = ({text, value}) => (
+  // if (text == Percentage) { ... }
+  <div>{text} {value}</div>
+)
 
-const Percentage = ({ good, all }) => {
-  let percent = good / all.length * 100
-  return (
-    <div>
-      Positive {percent} %
-    </div>
-  )
-}
-
-const Statistics = (props) => {
-  if (props.all.length === 0)
+const Statistics = ({ good, neutral, bad, all}) => {
+  if (all.length === 0)
     return (
       <div>No feedback given</div>
     )
   return (
     <div>
-      <div>Good {props.good}</div>
-      <div>Neutral {props.neutral}</div>
-      <div>Bad {props.bad}</div>
-      <div>All {props.all.length}</div>
-      <Average all={props.all} />
-      <Percentage good={props.good} all={props.all} />
+      <StatisticLine text='Good' value={good} />
+      <StatisticLine text='Neutral' value={neutral} />
+      <StatisticLine text='Bad' value={bad} />
+      <StatisticLine text='All' value={all.length} />
+      <StatisticLine text='Average' value={calcAverage(all)} />
+      <StatisticLine text='Percentage' value={calcPercentage(good, all.length)} /> 
     </div>
   )
 }
