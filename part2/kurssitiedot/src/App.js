@@ -1,8 +1,10 @@
 import React from 'react'
 import Course from './components/Course'
 
+
 /**
- * Main component to run
+ * The main element of the application.
+ *
  */
 const App = () => {
   const courses = [
@@ -31,7 +33,7 @@ const App = () => {
           id: 4
         }
       ]
-    }, 
+    },
     {
       name: 'Node.js',
       id: 2,
