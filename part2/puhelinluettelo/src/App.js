@@ -6,6 +6,10 @@ const App = () => {
   ])
   const [ newName, setNewName ] = useState('')
   const [ newNum, setNewNum ] = useState('')
+  const [ searchTerm, setSearchTerm ] = useState('')
+  const [ matching, setMatching] = useState([
+    persons
+  ])
 
   const addPerson = (event) => {
     event.preventDefault()
@@ -24,9 +28,21 @@ const App = () => {
     setNewNum(event.target.value)
   }
 
+  const handleSearchTerm = (event) => {
+    setSearchTerm(event.target.value)
+    setMatching(persons.filter(person => person.name.includes(searchTerm)))
+  }
+
   return (
     <div>
       <h2>Phonebook</h2>
+      <div>
+        search: <input
+                  value={searchTerm}
+                  onChange={handleSearchTerm}
+                />
+      </div>
+      <h2>Add a new contact</h2>
       <form onSubmit={addPerson}>
         <div>
           name: <input
@@ -46,8 +62,8 @@ const App = () => {
       </form>
       <h2>Numbers</h2>
       <div>
-        {persons.map((person) =>
-          <p key={person.name}>
+        {matching.map((person) =>
+          <p key={matching.indexOf(person)}>
             {person.name} - {person.number}
           </p>
         )}
