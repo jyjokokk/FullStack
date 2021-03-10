@@ -27,5 +27,4 @@ sketch
 */.vscode/
 **/.vscode/
 
-# YouCompleteMe
-**/jsconfig.json
+**/node_modules/
